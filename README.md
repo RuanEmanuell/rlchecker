@@ -1,6 +1,6 @@
-# alarme
+## RLChecker
 
-A new Flutter project.
+A rank checker for Rocket League, still under development.
 
 ## Getting Started
 
