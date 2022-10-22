@@ -12,7 +12,7 @@ abstract class _Controller with Store {
   String player = "2b6bf0d9752b456883bb449ae156db50";
 
   @observable
-  String key = "YOUR KEY HERE";
+  String key = "YOUR ROCKET LEAGUE API KEY HERE";
 
   @observable
   var json;

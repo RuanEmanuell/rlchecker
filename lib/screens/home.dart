@@ -55,7 +55,8 @@ class HomeScreen extends StatelessWidget {
                         decoration: InputDecoration(
                             hintText: "Enter Epic Games ID",
                             hintStyle: GoogleFonts.hind(
-                                fontWeight: FontWeight.bold, color: const Color.fromARGB(167, 255, 255, 255)),
+                                fontWeight: FontWeight.bold,
+                                color: const Color.fromARGB(167, 255, 255, 255)),
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white, width: 3)),
                             enabledBorder: const OutlineInputBorder(
@@ -77,14 +78,14 @@ class HomeScreen extends StatelessWidget {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                         onPressed: () {
-                          if(textController.text.length==32){
-                          data.player = textController.text;
-                          data.requestData();
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return LoadingScreen();
-                            },
-                          ));
+                          if (textController.text.length == 32) {
+                            data.player = textController.text;
+                            data.requestData();
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return LoadingScreen();
+                              },
+                            ));
                           }
                         },
                         child: Text("SEARCH",
