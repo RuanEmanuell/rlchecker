@@ -24,8 +24,37 @@ mixin _$Controller on _Controller, Store {
     });
   }
 
-  late final _$requestDataAsyncAction =
-      AsyncAction('_Controller.requestData', context: context);
+  late final _$keyAtom = Atom(name: '_Controller.key', context: context);
+
+  @override
+  String get key {
+    _$keyAtom.reportRead();
+    return super.key;
+  }
+
+  @override
+  set key(String value) {
+    _$keyAtom.reportWrite(value, super.key, () {
+      super.key = value;
+    });
+  }
+
+  late final _$jsonAtom = Atom(name: '_Controller.json', context: context);
+
+  @override
+  dynamic get json {
+    _$jsonAtom.reportRead();
+    return super.json;
+  }
+
+  @override
+  set json(dynamic value) {
+    _$jsonAtom.reportWrite(value, super.json, () {
+      super.json = value;
+    });
+  }
+
+  late final _$requestDataAsyncAction = AsyncAction('_Controller.requestData', context: context);
 
   @override
   Future requestData() {
@@ -35,7 +64,9 @@ mixin _$Controller on _Controller, Store {
   @override
   String toString() {
     return '''
-player: ${player}
+player: ${player},
+key: ${key},
+json: ${json}
     ''';
   }
 }

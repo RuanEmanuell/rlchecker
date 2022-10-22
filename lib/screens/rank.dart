@@ -1,66 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 
+import "loading.dart";
 import "home.dart";
-
 
 class RankScreen extends StatelessWidget {
 
-  var json= jsonDecode(
-      """{"ranks":[{"division":4,"played":0,"rank":"Platinum II","playlist":"Duel (Ranked)","mmr":746,"streak":1},{"division":1,"played":194,"rank":"Diamond III","playlist":"Doubles (Ranked)","mmr":990,"streak":-1},{"division":1,"played":36,"rank":"Diamond III","playlist":"Standard (Ranked)","mmr":999,"streak":4},{"division":2,"played":19,"rank":"Diamond II","playlist":"Hoops","mmr":839,"streak":1},{"division":1,"played":37,"rank":"Champion I","playlist":"Rumble","mmr":998,"streak":-1},{"division":1,"played":20,"rank":"Platinum III","playlist":"Dropshot","mmr":689,"streak":-2},{"division":4,"played":0,"rank":"Gold I","playlist":"Snow Day","mmr":529,"streak":-1}],"reward":{"progress":0,"level":"Champion"}}""");
-
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
+        body: Container(
+      color: Colors.black,
+      child: ListView(children: [
+        Stack(
           children:[
-            Container(
-                color: Colors.black,
-                child: Column(
+            Column(
+            children: [
+              Container(
+                margin:const EdgeInsets.only(top:50, bottom:50),
+                child: Text("ID: ${data.player}",
+                    style: GoogleFonts.hind(
+                        fontWeight: FontWeight.bold, fontSize: screenWidth / 30, color: Colors.white)),
+              ),
+              Container(
+                width:screenWidth/2,
+                margin:const EdgeInsets.only(bottom: 50),
+                decoration:BoxDecoration(
+                  gradient:const LinearGradient(
+                    begin:Alignment.centerLeft,
+                    end:Alignment.centerRight,
+                    colors:[Colors.purple, Colors.blue],
+                  ),
+                  borderRadius:BorderRadius.circular(screenWidth/50)
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(data.player),
-                          Text("ID: ${data.player}", style:TextStyle(
-                            color:Colors.white
-                          )),   
-                        Text("Reward Level: ${json["reward"]["level"]}", style:TextStyle(
-                          color:Colors.white
-                        )),
-                        Container(
-                          width:100,
-                          height:100,
-                          child: Image.asset("assets/images/${(json["reward"]["level"])}.png")),
-                    SizedBox(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: ScrollPhysics(),
-                        itemCount:json["ranks"].length-1,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Text(json["ranks"][index]["playlist"], style:TextStyle(
-                                color:Colors.white
-                              )),
-                              SizedBox(
-                                  width: 200,
-                                  height: 200,
-                                  child: Image.asset(
-                                      "assets/images/${(json["ranks"][index]["rank"]).substring(0, json["ranks"][0]["rank"].indexOf(" ")).trim()}.png")),
-                          Text(json["ranks"][index]["rank"], style: const TextStyle(color: Colors.white)),           
-                            ],
-                          );
-                          }
-                        
-                      ),
+                    Container(
+                        margin:const EdgeInsets.only(bottom:10),
+                        width: screenWidth / 5,
+                        height: screenHeight / 10,
+                        child: Image.asset("assets/images/${(data.json["reward"]["level"])}.png")),
+                    Column(
+                      children: [
+                        Text("Reward Level",
+                            style: GoogleFonts.hind(
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenWidth / 30,
+                                color: Colors.white)),
+                        Text(data.json["reward"]["level"],
+                            style: GoogleFonts.hind(
+                                fontWeight: FontWeight.bold,
+                                fontSize: screenWidth / 20,
+                                color: Colors.white)),
+                      ],
                     ),
                   ],
+                ),
+              ),
+              SizedBox(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemCount: data.json["ranks"].length-1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset(
+                                    "assets/images/${(data.json["ranks"][index]["rank"]).substring(0, data.json["ranks"][0]["rank"].indexOf(" ")).trim()}.png")),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text(data.json["ranks"][index]["playlist"], style: GoogleFonts.hind(
+                                  fontWeight:FontWeight.bold,
+                                  fontSize:screenWidth/27,
+                                  color: const Color.fromARGB(255, 85, 173, 255))),
+                                Text(data.json["ranks"][index]["rank"], style: GoogleFonts.hind(
+                                  fontWeight:FontWeight.bold,
+                                  color: Colors.white)),   
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text("MMR: ${data.json["ranks"][index]["mmr"]}", style: GoogleFonts.hind(
+                                  fontWeight:FontWeight.bold,
+                                  color: Colors.white)),
+                                Text("Streak: ${data.json["ranks"][index]["streak"]}", style: GoogleFonts.hind(
+                                  fontWeight:FontWeight.bold,      
+                                  color: data.json["ranks"][index]["streak"]>0? Colors.green:Colors.red)),   
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+              ),
+            ],
+          ),
+          IconButton(
+            onPressed:(){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:(context) {
+                    return HomeScreen();
+                  },
                 )
-            
-          
-            ),
+              );
+            },
+            icon:Icon(Icons.arrow_back, size:screenWidth/7, color:Colors.white),
+          )
           ]
         ),
-      )
-    );
+      ]),
+    ));
   }
 }
