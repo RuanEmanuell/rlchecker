@@ -12,7 +12,6 @@ You will need <a href="https://docs.flutter.dev/get-started/install">Flutter</a>
 
 ![rlchecker](https://user-images.githubusercontent.com/113607857/197355545-3fe95701-566b-4691-a735-b9d69907bc5a.gif)
 
-
 ### This project was made only for proposes of study!
 
 
