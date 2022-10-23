@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
                 height: screenHeight,
                 width: screenWidth,
                 decoration: BoxDecoration(
+                    //Background image
                     image: const DecorationImage(
                         fit: BoxFit.cover, opacity: 0.1, image: AssetImage("assets/images/rocket.jpg")),
                     gradient: LinearGradient(
@@ -32,6 +33,7 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        //Main text and logo
                         Container(
                             margin: EdgeInsets.only(right: screenWidth / 100),
                             child: Text("ROCKET LEAGUE CHECKER",
@@ -47,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //ID Text Field
                   Container(
                     margin: EdgeInsets.only(
                         top: screenHeight / 20, left: screenWidth / 15, right: screenWidth / 15),
@@ -63,6 +66,7 @@ class HomeScreen extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.white, width: 2))),
                         style: GoogleFonts.hind(fontWeight: FontWeight.bold, color: Colors.white)),
                   ),
+                  //Check your id button
                   Container(
                     margin: EdgeInsets.only(top: screenHeight / 45, bottom: screenHeight / 8),
                     child: TextButton(
@@ -72,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                         child: Text("Check your Epic ID",
                             style: GoogleFonts.hind(fontWeight: FontWeight.bold, color: Colors.white))),
                   ),
+                  //Search button
                   SizedBox(
                     width: screenWidth / 1.75,
                     height: screenHeight / 9,

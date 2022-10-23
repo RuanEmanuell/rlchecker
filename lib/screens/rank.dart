@@ -18,6 +18,7 @@ class RankScreen extends StatelessWidget {
                 Column(
                   children: [
                     Container(
+                      //Showing player ID
                       margin: const EdgeInsets.only(top: 50, bottom: 50),
                       child: Text("ID: ${data.player}",
                           style: GoogleFonts.hind(
@@ -25,6 +26,7 @@ class RankScreen extends StatelessWidget {
                               fontSize: screenWidth / 30,
                               color: Colors.white)),
                     ),
+                    //Reward Level container
                     Container(
                       width: screenWidth / 2,
                       margin: const EdgeInsets.only(bottom: 50),
@@ -38,6 +40,7 @@ class RankScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          //Reward level image
                           Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               width: screenWidth / 5,
@@ -45,6 +48,7 @@ class RankScreen extends StatelessWidget {
                               child: Image.asset("assets/images/${(data.json["reward"]["level"])}.png")),
                           Column(
                             children: [
+                              //Reward Level texts
                               Text("Reward Level",
                                   style: GoogleFonts.hind(
                                       fontWeight: FontWeight.bold,
@@ -60,6 +64,7 @@ class RankScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    //Showing all ranks
                     SizedBox(
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -69,6 +74,7 @@ class RankScreen extends StatelessWidget {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                //Rank images
                                 Expanded(
                                   child: SizedBox(
                                       width: 100,
@@ -76,6 +82,7 @@ class RankScreen extends StatelessWidget {
                                       child: Image.asset(
                                           "assets/images/${(data.json["ranks"][index]["rank"]).substring(0, data.json["ranks"][0]["rank"].indexOf(" ")).trim()}.png")),
                                 ),
+                                //Playlist name
                                 Expanded(
                                   child: Column(
                                     children: [
@@ -90,6 +97,7 @@ class RankScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                //MMR and Streak texts
                                 Expanded(
                                   child: Column(
                                     children: [
@@ -111,6 +119,7 @@ class RankScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                //Return to HomeScreen Button
                 IconButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
@@ -124,6 +133,7 @@ class RankScreen extends StatelessWidget {
               ]),
             ])
           : Center(
+              //If API fails to load, will be displayed a retry button
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   onPressed: () {

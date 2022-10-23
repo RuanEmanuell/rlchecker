@@ -16,6 +16,7 @@ class _LoadingScreen extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
+    //Loading animation
     Future.delayed(const Duration(milliseconds: 100), () {
       setState(() {
         big = true;
@@ -26,6 +27,7 @@ class _LoadingScreen extends State<LoadingScreen> {
         big = false;
       });
     });
+    //Pushing to RankScreen after 3 seconds to assure API data is loaded
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
@@ -45,6 +47,7 @@ class _LoadingScreen extends State<LoadingScreen> {
         height: screenHeight,
         decoration: const BoxDecoration(color: Colors.black),
         child: Center(
+            //Animated loading
             child: AnimatedContainer(
                 width: big ? screenWidth / 2 : screenWidth / 3,
                 height: big ? screenHeight / 3 : screenHeight / 5,
