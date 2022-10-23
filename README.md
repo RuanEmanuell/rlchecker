@@ -2,7 +2,7 @@
 
 ## RLChecker
 
-A project for training the usage of MobX in Flutter for State Management, a simple rank checker for Rocket League, using the <a href="https://rapidapi.com/rocket-league-rocket-league-default/api/rocket-league1">Rocket League API</a>.
+A project for training the usage of <a href="https://pub.dev/packages/mobx">MobX</a> in Flutter for State Management, a simple rank checker for Rocket League, using the <a href="https://rapidapi.com/rocket-league-rocket-league-default/api/rocket-league1">Rocket League API</a>.
 
 ### How to Run
 
@@ -10,7 +10,7 @@ You will need <a href="https://docs.flutter.dev/get-started/install">Flutter</a>
 
 ### Here are some images of the project running:
 
-![rlchecker](https://user-images.githubusercontent.com/113607857/197353334-8111c6b0-9b4d-451a-9981-354e4422573d.gif)
+![rlchecker](https://user-images.githubusercontent.com/113607857/197355545-3fe95701-566b-4691-a735-b9d69907bc5a.gif)
 
 ### This project was made only for proposes of study!
 
